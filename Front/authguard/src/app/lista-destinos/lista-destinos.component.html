@@ -1,0 +1,74 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- column -->
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- Row -->
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                    <!-- column -->
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+                        Lista de Destinos
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->
+</div>
+
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Ingreso de Información</mat-card-title>
+        <mat-card-subtitle>Acompañantes y destino</mat-card-subtitle>
+
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Información del Viaje  </mat-panel-title>
+                    <mat-panel-description> Cantidad de acompañantes
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                    <input matInput placeholder="Nombre del Organizador" #iNombreOrganizador> </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" min="1" placeholder="Cantidad de Acompañates" #iPersonas> </mat-form-field>
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Destino </mat-panel-title>
+                    <mat-panel-description> Ingresa el nombre del Destino
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                    <input matInput placeholder="Pais o destino" #iDestino> </mat-form-field>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Regresar</button>
+                    <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Fecha ideal  </mat-panel-title>
+                    <mat-panel-description> Fechas ideales para iniciar viaje
+                        <mat-icon>date_range</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                    <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly> </mat-form-field>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Regresar</button>
+                    <button mat-button color="primary" (click)="guardar(iNombreOrganizador.value,iPersonas.value,iDestino.value,picker)">Guardar</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>
