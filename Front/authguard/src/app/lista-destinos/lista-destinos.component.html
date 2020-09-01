@@ -49,6 +49,8 @@
                 </mat-expansion-panel-header>
                 <mat-form-field>
                     <input matInput placeholder="Pais o destino" #iDestino> </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Descripción del Viaje" #iDescripcion> </mat-form-field>
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Regresar</button>
                     <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
@@ -62,13 +64,25 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <mat-form-field>
-                    <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly> </mat-form-field>
-                <mat-datepicker #picker></mat-datepicker>
+                    <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+                        <input matStartDate placeholder="Inicio de viaje" formControlName="start" />
+                        <input matStartDate placeholder="Fin del viaje" formControlName="end" />
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle #picker></mat-datepicker-toggle>
+                </mat-form-field>
+
+             
+
+                    
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Regresar</button>
-                    <button mat-button color="primary" (click)="guardar(iNombreOrganizador.value,iPersonas.value,iDestino.value,picker)">Guardar</button>
+                    <button mat-button color="primary" (click)="guardar(iNombreOrganizador.value,iPersonas.value,iDestino.value,iDescripcion.value)">Guardar</button>
                 </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-card-content>
 </mat-card>
+
+<div fxLayout="row wrap">
+    <app-destino-viaje *ngFor="let d of destinos;" [destino]="d"></app-destino-viaje>
+</div>
