@@ -41,7 +41,7 @@ const MENUITEMS = [
         state: 'destino',
         name: 'Destinos',
         type: 'link',
-        icon: 'content_copy'
+        icon: 'explore'
     },
     {
         state: 'material',

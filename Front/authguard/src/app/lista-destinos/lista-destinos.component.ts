@@ -9,23 +9,26 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./lista-destinos.component.scss']
 })
 export class ListaDestinosComponent implements OnInit {
-  eventsDates: string[] = [];
-  form: FormGroup;
+  fechaSeleccionada: Date;
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.eventsDates.push(`${type}: ${event.value}`);
+
   }
 
-  destinos: DestinoViaje[];
-  constructor(private fb:FormBuilder) { 
-     this.destinos = [];
+  destinos: DestinoViaje[] = [];
+
+  constructor() { 
   }
+
   idate: string = '';
-  guardar(iNombreOrganizador:string, ipersonas:number, iDestino:string,idescripcion:string): boolean {
+  guardar(iNombreOrganizador:string, ipersonas:number, iDestino:string,ifecha:Date,idescripcion:string): boolean {
     
-    // this.idate= this.events.pop();
-    //this.idate = this.eventsDates.pop.toString();
-    this.destinos.push(new DestinoViaje(iNombreOrganizador,ipersonas,iDestino,this.eventsDates.pop.toString(),idescripcion));
+ 
+    this.destinos.push(new DestinoViaje(iNombreOrganizador,ipersonas,iDestino,ifecha,idescripcion));
     console.log(this.destinos);
 
     return false;
@@ -38,12 +41,7 @@ export class ListaDestinosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form =this.fb.group({
-      daterange: new FormGroup({
-        start: new FormControl(),
-        end: new FormControl()
-      })
-    })
+
   }
 
   panelOpenState = false;

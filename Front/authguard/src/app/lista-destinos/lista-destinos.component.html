@@ -27,11 +27,12 @@
         <mat-accordion class="example-headers-align">
             <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
                 <mat-expansion-panel-header>
-                    <mat-panel-title> Información del Viaje  </mat-panel-title>
-                    <mat-panel-description> Cantidad de acompañantes
+                    <mat-panel-title> Organizador </mat-panel-title>
+                    <mat-panel-description> 
                         <mat-icon>account_circle</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                <p>Ingresa la información del organizador del viaje y tus acompañantes</p>
                 <mat-form-field>
                     <input matInput placeholder="Nombre del Organizador" #iNombreOrganizador> </mat-form-field>
                 <mat-form-field>
@@ -43,10 +44,11 @@
             <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
                 <mat-expansion-panel-header>
                     <mat-panel-title> Destino </mat-panel-title>
-                    <mat-panel-description> Ingresa el nombre del Destino
+                    <mat-panel-description>
                         <mat-icon>map</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                <p>Ingresa la información del destino</p>
                 <mat-form-field>
                     <input matInput placeholder="Pais o destino" #iDestino> </mat-form-field>
                 <mat-form-field>
@@ -58,25 +60,30 @@
             </mat-expansion-panel>
             <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
                 <mat-expansion-panel-header>
-                    <mat-panel-title> Fecha ideal  </mat-panel-title>
-                    <mat-panel-description> Fechas ideales para iniciar viaje
+                    <mat-panel-title> Fecha ideal </mat-panel-title>
+                    <mat-panel-description> 
                         <mat-icon>date_range</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <mat-form-field>
-                    <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
-                        <input matStartDate placeholder="Inicio de viaje" formControlName="start" />
-                        <input matStartDate placeholder="Fin del viaje" formControlName="end" />
-                    </mat-date-range-input>
-                    <mat-datepicker-toggle #picker></mat-datepicker-toggle>
+                <p>Ingresa las fechas ideales para inciar el viaje</p>
+               
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" (focus)="picker.open()" [(ngModel)]="fechaSeleccionada">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
                 </mat-form-field>
-
              
+                 
+
+                <!-- <mat-form-field>
+                    <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly> </mat-form-field>
+                <mat-datepicker #picker></mat-datepicker> -->
 
                     
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Regresar</button>
-                    <button mat-button color="primary" (click)="guardar(iNombreOrganizador.value,iPersonas.value,iDestino.value,iDescripcion.value)">Guardar</button>
+                    <button mat-button color="primary" (click)="guardar(iNombreOrganizador.value,iPersonas.value,iDestino.value,fechaSeleccionada,iDescripcion.value)">Guardar</button>
                 </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>

@@ -8,7 +8,10 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 export class AppHeaderComponent {
   public config: PerfectScrollbarConfigInterface = {};
 
-
+  userName: any;
+  constructor() {
+    this.userName = localStorage.getItem('username');
+  }
   // This is for Notifications
   notifications: Object[] = [
     {

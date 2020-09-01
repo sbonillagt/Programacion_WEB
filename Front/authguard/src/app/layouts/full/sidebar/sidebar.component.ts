@@ -36,12 +36,12 @@ export class AppSidebarComponent implements OnDestroy {
     subclickEvent() {
         this.status = true;
     }
-    // scrollToTop() {
-    //     document.querySelector('.page-wrapper').scroll({
-    //         top: 0,
-    //         left: 0
-    //     });
-    // }
+    scrollToTop() {
+        // document.querySelector('.page-wrapper').scroll({
+        //     top: 0,
+        //     left: 0
+        // });
+    }
 
     constructor(
         changeDetectorRef: ChangeDetectorRef,
