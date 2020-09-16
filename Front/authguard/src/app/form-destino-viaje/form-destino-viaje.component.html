@@ -1,1 +1,74 @@
-<p>form-destino-viaje works!</p>
+<form
+    [formGroup]="formGroupFormulario"
+    (ngSubmit)="guardar(formGroupFormulario.controls['iNombreOrganizador'].value, formGroupFormulario.controls['iPersonas'].value,formGroupFormulario.controls['iDestino'].value, formGroupFormulario.controls['fechaSeleccionada'].value, formGroupFormulario.controls['iDescripcion'].value )">
+    <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title> Organizador </mat-panel-title>
+                <mat-panel-description> 
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Ingresa la información del organizador del viaje y tus acompañantes</p>
+            <mat-form-field>
+                <input matInput id="iNombreOrganizador" placeholder="Nombre del Organizador" [formControl]="formGroupFormulario.controls['iNombreOrganizador']"> </mat-form-field>
+            <div *ngIf="formGroupFormulario.controls['iNombreOrganizador'].valid"> Requerido </div>
+            <mat-form-field>
+                <input matInput type="number" min="1" id="iPersonas" placeholder="Cantidad de Acompañates" [formControl]="formGroupFormulario.controls['iPersonas']"> </mat-form-field>
+            <mat-action-row>
+                <button mat-button color="primary" type="button" (click)="nextStep()">Siguiente</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title> Destino </mat-panel-title>
+                <mat-panel-description>
+                    <mat-icon>map</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Ingresa la información del destino</p>
+            <mat-form-field>
+                <input matInput id="iDestino" placeholder="Pais o destino" [formControl]="formGroupFormulario.controls['iDestino']"> </mat-form-field>
+                <div *ngIf="formGroupFormulario.controls['iDestino'].valid"> Requerido </div>
+            <mat-form-field>
+                <input matInput id="iDescripcion" placeholder="Descripción del Viaje" [formControl]="formGroupFormulario.controls['iDescripcion']"> </mat-form-field>
+            <mat-action-row>
+                <button mat-button type="button" color="warn" (click)="prevStep()">Regresar</button>
+                <button mat-button type="button" color="primary" (click)="nextStep()">Siguiente</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title> Fecha ideal </mat-panel-title>
+                <mat-panel-description> 
+                    <mat-icon>date_range</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Ingresa las fechas ideales para inciar el viaje</p>
+           
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" (focus)="picker.open()" formControlName="fechaSeleccionada">
+                <div *ngIf="formGroupFormulario.controls['fechaSeleccionada'].valid"></div>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+         
+             
+    
+            <!-- <mat-form-field>
+                <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly> </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker> -->
+    
+            <p style="color:#FF0000" *ngIf="!formGroupFormulario.valid" >Ingresa todo los datos</p>
+            <mat-action-row>
+                <button mat-button type="button" color="warn" (click)="prevStep()">Regresar</button>
+                
+                <button mat-button color="primary" type="submit" *ngIf="formGroupFormulario.valid">Guardar!</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</form>
+
+
