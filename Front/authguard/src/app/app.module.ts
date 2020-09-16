@@ -2,7 +2,7 @@ import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { DestinoViajeComponent } from './destino-viaje/destino-viaje.component';
 import { ListaDestinosComponent } from './lista-destinos/lista-destinos.component';
+import { FormDestinoViajeComponent } from './form-destino-viaje/form-destino-viaje.component'
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -43,6 +44,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         AppBreadcrumbComponent,
         DestinoViajeComponent,
         ListaDestinosComponent,
+        FormDestinoViajeComponent
     ],
     imports: [
         BrowserModule,
@@ -53,7 +55,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PerfectScrollbarModule,
         HttpClientModule,
         SharedModule,
-        RouterModule.forRoot(AppRoutes)
+        RouterModule.forRoot(AppRoutes),
+        //COURSERA
+        ReactiveFormsModule
     ],
     providers: [
         AuthGuard,

@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
   msg = '';
   constructor(private service: MyserviceService, private routes: Router) { }
 
-  check(uname: string, p: string) {
-    const output = this.service.checkusernameandpassword(uname, p);
+  check(userName: string, password: string) {
+    const output = this.service.checkUser(userName, password);
     if (output == true) {
       this.routes.navigate(['/starter']);
     } else {  
-      this.msg = 'Usuario o Password Invalidos';
+      this.msg = 'Usuario o Password Incorrecta';
     }
   }
 
