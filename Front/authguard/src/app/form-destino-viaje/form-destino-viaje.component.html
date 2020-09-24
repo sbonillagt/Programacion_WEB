@@ -11,8 +11,14 @@
             </mat-expansion-panel-header>
             <p>Ingresa la información del organizador del viaje y tus acompañantes</p>
             <mat-form-field>
-                <input matInput id="iNombreOrganizador" placeholder="Nombre del Organizador" [formControl]="formGroupFormulario.controls['iNombreOrganizador']"> </mat-form-field>
-            <div *ngIf="formGroupFormulario.controls['iNombreOrganizador'].valid"> Requerido </div>
+                <input matInput id="iNombreOrganizador" placeholder="Nombre del Organizador" [formControl]="formGroupFormulario.controls['iNombreOrganizador']"> 
+                <mat-error *ngIf="formGroupFormulario.controls['iNombreOrganizador'].hasError('required')"> </mat-error>
+                <!-- <mat-error *ngIf="formGroupFormulario.controls['iNombreOrganizador'].hasError('nombreInvalido')">Nombre invalido</mat-error> -->
+            </mat-form-field>
+                
+                <!-- <div *ngIf="formGroupFormulario.controls['iNombreOrganizador'].hasError('required')"> </div> -->
+                <!-- <div style="color:#FF0000" *ngIf="formGroupFormulario.controls['iNombreOrganizador'].hasError('nombreInvalido')">Nombre invalido </div>
+            -->
             <mat-form-field>
                 <input matInput type="number" min="1" id="iPersonas" placeholder="Cantidad de Acompañates" [formControl]="formGroupFormulario.controls['iPersonas']"> </mat-form-field>
             <mat-action-row>
@@ -29,7 +35,7 @@
             <p>Ingresa la información del destino</p>
             <mat-form-field>
                 <input matInput id="iDestino" placeholder="Pais o destino" [formControl]="formGroupFormulario.controls['iDestino']"> </mat-form-field>
-                <div *ngIf="formGroupFormulario.controls['iDestino'].valid"> Requerido </div>
+                <div *ngIf="formGroupFormulario.controls['iDestino'].valid">  </div>
             <mat-form-field>
                 <input matInput id="iDescripcion" placeholder="Descripción del Viaje" [formControl]="formGroupFormulario.controls['iDescripcion']"> </mat-form-field>
             <mat-action-row>
@@ -60,7 +66,7 @@
                 <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly> </mat-form-field>
             <mat-datepicker #picker></mat-datepicker> -->
     
-            <p style="color:#FF0000" *ngIf="!formGroupFormulario.valid" >Ingresa todo los datos</p>
+            <p style="color:#FF0000" *ngIf="!formGroupFormulario.valid" >Ingresa todo los datos del formulario para poder continuar</p>
             <mat-action-row>
                 <button mat-button type="button" color="warn" (click)="prevStep()">Regresar</button>
                 

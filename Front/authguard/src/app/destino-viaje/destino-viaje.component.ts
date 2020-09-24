@@ -23,4 +23,8 @@ export class DestinoViajeComponent implements OnInit {
     this.clicked.emit(this.destino)
     return false;
   }
+
+  borrarDestino(destino:DestinoViaje){
+    console.log(destino);
+}
 }
