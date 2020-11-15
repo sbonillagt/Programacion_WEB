@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, ControlContainer, ValidatorFn } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DestinoViaje } from '../models/destino-viaje';
+import { ActivatedRoute} from '@angular/router';
+import { param } from 'jquery';
+import { MyserviceService } from '../myservice.service';
 
 @Component({
   selector: 'app-form-destino-viaje',
@@ -14,8 +17,11 @@ export class FormDestinoViajeComponent implements OnInit {
 
 esEdicion: boolean;
 formGroupFormulario: FormGroup;
+fechaDestino: Date;
 
-  constructor(formBuilderFormulario: FormBuilder) {
+  constructor(private servicio:MyserviceService,
+              formBuilderFormulario: FormBuilder,
+              private route:ActivatedRoute) {
     this.onItemAdded = new EventEmitter();
     this.formGroupFormulario = formBuilderFormulario.group({
       iNombreOrganizador: ['', Validators.required],
@@ -23,20 +29,24 @@ formGroupFormulario: FormGroup;
       iDestino: ['',Validators.required],
       fechaSeleccionada: ['',Validators.required],
       iDescripcion: ['',Validators.required],
+      idBase:[]
     });
    }
 
-  guardar(iNombreOrganizador:string, iPersonas:number, iDestino:string, fechaSeleccionada:Date, iDescripcion:string):boolean{
+  guardar(iNombreOrganizador:string, iPersonas:number, iDestino:string, fechaSeleccionada:Date, iDescripcion:string, idBase:string):boolean{
     // let fechaUTC = fechaSeleccionada.toUTCString;
     // console.log("Fecha ISO: ");
     // console.log(fechaUTC.toString());
     console.log(fechaSeleccionada.toISOString());
-
-    let destino = new DestinoViaje(iNombreOrganizador,iPersonas,iDestino,fechaSeleccionada.toISOString(),iDescripcion,1,"abc1");
+    let destino = new DestinoViaje(iNombreOrganizador,iPersonas,iDestino,fechaSeleccionada.toISOString(),iDescripcion,1,idBase);
     console.log(destino);
-
-
+    if(idBase==null){
     this.onItemAdded.emit(destino)
+    }else{
+      console.log("Vamonos a editar este tema ")
+      this.servicio.editByID(destino);
+    }
+
     this.formGroupFormulario.reset();
     this.formGroupFormulario.controls.iNombreOrganizador.setErrors(null);
     this.formGroupFormulario.controls.iPersonas.setErrors(null);
@@ -44,6 +54,7 @@ formGroupFormulario: FormGroup;
     this.formGroupFormulario.controls.fechaSeleccionada.setErrors(null);
     this.formGroupFormulario.controls.iDescripcion.setErrors(null);
     this.step =0;
+
     return false;
   }
 
@@ -57,20 +68,46 @@ formGroupFormulario: FormGroup;
     return {nombreInvalido:false}
   }
 
+  // https://www.youtube.com/watch?v=aKTLabJ39Rk
+  // https://desarrolloweb.com/articulos/emision-eventos-output-angular.html
+  // https://academia-binaria.com/servicios-inyectables-en-Angular/
+  // https://www.youtube.com/watch?v=aKTLabJ39Rk
+  // https://stackoverflow.com/questions/53944832/how-to-update-a-value-using-forms-and-services-on-angular
+  // https://jasonwatmore.com/post/2020/09/02/angular-combined-add-edit-create-update-form-example
+
   editarViaje(idestino:DestinoViaje){
     console.log("Entrando a edición de viajes")
-    this.esEdicion = true; // Boleano para verificar si es edición
-    // this.formGroupFormulario.patchValue({
-    //   iNombreOrganizador: idestino.nombreOrganizador,
-    //   iPersonas: idestino.cantidadPersonas,
-    //   iDestino: idestino.nombreDestino
-    // });
+    //this.esEdicion = true; // Boleano para verificar si es edición
 
+    this.fechaDestino = new Date(idestino.fechaInicial)
+
+    this.formGroupFormulario.patchValue({
+      iNombreOrganizador: idestino.nombreOrganizador,
+      iPersonas: idestino.cantidadPersonas,
+      iDestino: idestino.nombreDestino,
+      iDescripcion: idestino.descripcion,
+      fechaSeleccionada: this.fechaDestino,
+      idBase: idestino.id
+    });
 
   }
 
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params =>{
+      const destinoI= params.get('id');
+      if (destinoI){
+        //this.editarViaje(this.servicio.getByIdDestinos(destinoI.toString()))
+        this.servicio.getByIdDestinos(destinoI.toString()).subscribe((res:DestinoViaje)=>{
+          console.log(res);
+          this.editarViaje(res);
+        }, err => console.log(err)
+        );;
+        
+      }
+    })
+
   }
 
   fechaSeleccionada: Date;

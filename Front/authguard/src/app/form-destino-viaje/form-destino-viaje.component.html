@@ -1,6 +1,6 @@
 <form
     [formGroup]="formGroupFormulario"
-    (ngSubmit)="guardar(formGroupFormulario.controls['iNombreOrganizador'].value, formGroupFormulario.controls['iPersonas'].value,formGroupFormulario.controls['iDestino'].value, formGroupFormulario.controls['fechaSeleccionada'].value, formGroupFormulario.controls['iDescripcion'].value )">
+    (ngSubmit)="guardar(formGroupFormulario.controls['iNombreOrganizador'].value, formGroupFormulario.controls['iPersonas'].value,formGroupFormulario.controls['iDestino'].value, formGroupFormulario.controls['fechaSeleccionada'].value, formGroupFormulario.controls['iDescripcion'].value, formGroupFormulario.controls['idBase'].value)">
     <mat-accordion class="example-headers-align">
         <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
             <mat-expansion-panel-header>
@@ -35,6 +35,7 @@
             <p>Ingresa la información del destino</p>
             <mat-form-field>
                 <input matInput id="iDestino" placeholder="Pais o destino" [formControl]="formGroupFormulario.controls['iDestino']"> </mat-form-field>
+                <input hidden id="idBase" placeholder="id" [formControl]="formGroupFormulario.controls['idBase']">
                 <div *ngIf="formGroupFormulario.controls['iDestino'].valid">  </div>
             <mat-form-field>
                 <input matInput id="iDescripcion" placeholder="Descripción del Viaje" [formControl]="formGroupFormulario.controls['iDescripcion']"> </mat-form-field>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, HostBinding,ViewChild } from '@angular/core';
+import { data } from 'jquery';
 import {DestinoViaje} from 'src/app/models/destino-viaje';
 import { FormDestinoViajeComponent } from '../form-destino-viaje/form-destino-viaje.component';
 import { ListaDestinosComponent } from '../lista-destinos/lista-destinos.component';
@@ -21,14 +22,17 @@ export class DestinoViajeComponent implements OnInit {
     this.onDelete = new EventEmitter();
     this.onItemEditado = new EventEmitter();
   }
-
+  public fechaComponente: Date;
   ngOnInit(): void {
+    this.fechaComponente = new Date(this.destino.fechaInicial);
   }
 
   editarViaje(idestino:DestinoViaje){
     this.onItemEditado.emit(idestino);
     return false;
   }
+
+ 
 
   borrarDestino(destino:DestinoViaje){
     this.onDelete.emit(destino);

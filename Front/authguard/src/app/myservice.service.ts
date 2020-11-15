@@ -12,6 +12,7 @@ const API: string = "https://yoqiypo3o5.execute-api.us-east-1.amazonaws.com/dev"
 @Injectable()
 export class MyserviceService {
   destinos:DestinoViaje[];
+  unDestino:DestinoViaje;
   //actual:Subject<DestinoViaje> = new BehaviorSubject<DestinoViaje> (null );
 
 
@@ -25,7 +26,7 @@ export class MyserviceService {
     this.destinos = [];
   }
 
-  addDestino(iDestino:DestinoViaje){
+  addDestino(iDestino:DestinoViaje): Observable<DestinoViaje>{
     this.destinos.push(iDestino);
 
     // {
@@ -36,11 +37,13 @@ export class MyserviceService {
     //   "descripcion": iDestino.descripcion
     // }
 
-    console.log("Imprmiendo desde addDestino "+ iDestino.descripcion)
-    this.http.post(`${API}/post`, iDestino).subscribe(
-      (response)=> console.log(response),
-      (error)=> console.log(error)
-    );
+    // console.log("Imprmiendo desde addDestino "+ iDestino.descripcion)
+    // this.http.post(`${API}/post`, iDestino).subscribe(
+    //   (response)=> console.log(response),
+    //   (error)=> console.log(error)
+    // );
+
+    return this.http.post<DestinoViaje>(`${API}/post`, iDestino);
 
   }
 
@@ -55,19 +58,50 @@ export class MyserviceService {
   //   return this.destinos;
   // }
 
-  getAllDestinos(): DestinoViaje[]{
+  getAllDestinos(): Observable<DestinoViaje[]>{
     //Agarra toda la información del los post
-    this.http.get(`${API}/posts`).subscribe((res:any)=>{
-      console.log(res);
-      this.destinos = res;
-    }, err => console.log(err)
-    );
-    return this.destinos;
+    // this.http.get(`${API}/posts`).subscribe((res:any)=>{
+    //   console.log(res);
+    //   this.destinos = res;
+    // }, err => console.log(err)
+    // );
+    return this.http.get<DestinoViaje[]>(`${API}/posts`);
   }
 
-  getByIdDestinos(id:string):DestinoViaje{
-    return this.destinos[0];
+  // getByIdDestinos(id:string):DestinoViaje{
+  //   this.http.get(`${API}/post/${id}`).subscribe((res:any)=>{
+  //     console.log(res);
+  //     //this.destinos = res;
+  //     this.unDestino=res;
+  //   }, err => console.log(err)
+  //   );
+
+  //   return this.unDestino;
+  //   //return this.destinos[0];
+  //   // return this.destinos.filter(function(destinos){return destinos.id.toString() === id;})[0];
+  // }
+
+  getByIdDestinos(id:string):Observable<DestinoViaje>{
+    // this.http.get(`${API}/post/${id}`).subscribe((res:any)=>{
+    //   console.log(res);
+    //   //this.destinos = res;
+    //   this.unDestino=res;
+    // }, err => console.log(err)
+    // );
+
+    return this.http.get<DestinoViaje>(`${API}/post/${id}`);
+    //return this.destinos[0];
     // return this.destinos.filter(function(destinos){return destinos.id.toString() === id;})[0];
+  }
+
+  editByID(idestino:DestinoViaje){
+    let idBase = idestino.id;
+    this.http.put(`${API}/post/${idBase}`,idestino).subscribe(
+      (response)=>{
+        console.log(response)
+      },
+      (error)=> console.log(error)
+    );
   }
 
 

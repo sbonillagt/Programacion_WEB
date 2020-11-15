@@ -32,6 +32,10 @@ export const AppRoutes: Routes = [
             {
                 path: 'destino',
                 component: ListaDestinosComponent,
+            },
+            {
+                path: 'edit/:id',
+                component: ListaDestinosComponent,
             }
         ]
     },
