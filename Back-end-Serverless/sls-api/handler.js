@@ -27,9 +27,9 @@ function sortByDate(a,b){
 module.exports.createPost = (event, context, callback) => {
   const reqBody = JSON.parse(event.body);
 
-  if(!reqBody.nombreOrganizador || reqBody.nombreOrganizador.trim() === '' || !reqBody.cantidadPersonas || reqBody.cantidadPersonas.trim() === ''){
-    return callback(null,response(400,{error:'Algunos de los parametros no vienen completos'}))
-  }
+  // if(!reqBody.nombreOrganizador  || !reqBody.cantidadPersonas || reqBody.cantidadPersonas.trim() === ''){
+  //   return callback(null,response(400,{error:'Algunos de los parametros no vienen completos'}))
+  // }
 
   const post = {
     id: uuid(),

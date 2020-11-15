@@ -11,6 +11,8 @@ import { DestinoViaje } from '../models/destino-viaje';
 export class FormDestinoViajeComponent implements OnInit {
 @Output() onItemAdded: EventEmitter<DestinoViaje>;
 
+
+esEdicion: boolean;
 formGroupFormulario: FormGroup;
 
   constructor(formBuilderFormulario: FormBuilder) {
@@ -25,8 +27,15 @@ formGroupFormulario: FormGroup;
    }
 
   guardar(iNombreOrganizador:string, iPersonas:number, iDestino:string, fechaSeleccionada:Date, iDescripcion:string):boolean{
-    let destino = new DestinoViaje(iNombreOrganizador,iPersonas,iDestino,fechaSeleccionada.toString(),iDescripcion);
+    // let fechaUTC = fechaSeleccionada.toUTCString;
+    // console.log("Fecha ISO: ");
+    // console.log(fechaUTC.toString());
+    console.log(fechaSeleccionada.toISOString());
+
+    let destino = new DestinoViaje(iNombreOrganizador,iPersonas,iDestino,fechaSeleccionada.toISOString(),iDescripcion,1,"abc1");
     console.log(destino);
+
+
     this.onItemAdded.emit(destino)
     this.formGroupFormulario.reset();
     this.formGroupFormulario.controls.iNombreOrganizador.setErrors(null);
@@ -48,6 +57,17 @@ formGroupFormulario: FormGroup;
     return {nombreInvalido:false}
   }
 
+  editarViaje(idestino:DestinoViaje){
+    console.log("Entrando a edición de viajes")
+    this.esEdicion = true; // Boleano para verificar si es edición
+    // this.formGroupFormulario.patchValue({
+    //   iNombreOrganizador: idestino.nombreOrganizador,
+    //   iPersonas: idestino.cantidadPersonas,
+    //   iDestino: idestino.nombreDestino
+    // });
+
+
+  }
 
 
   ngOnInit(): void {

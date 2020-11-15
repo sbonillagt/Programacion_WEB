@@ -8,7 +8,8 @@
             </div>
             <mat-card-title>{{destino.nombreDestino}}</mat-card-title>
             
-            <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar {{destino.obtenerFecha().getDay()}}/{{destino.obtenerFecha().getMonth()}}/{{destino.obtenerFecha().getFullYear()}}</mat-card-subtitle>
+            <!-- <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar {{destino.obtenerFecha().getDay()}}/{{destino.obtenerFecha().getMonth()}}/{{destino.obtenerFecha().getFullYear()}}</mat-card-subtitle> -->
+            <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar </mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="assets/images/big/img4.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
@@ -27,7 +28,7 @@
                 </li>
             </ul> -->
             <mat-card-actions>
-                <button mat-raised-button color="accent" (click)="ir()">Editar</button>
+                <button mat-raised-button color="accent" (click)="editarViaje(destino)">Editar</button>
                 <button mat-button (click)="borrarDestino(destino)">Eliminar</button>
             </mat-card-actions>
         </mat-card-content>
