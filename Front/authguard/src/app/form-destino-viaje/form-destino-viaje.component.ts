@@ -34,9 +34,6 @@ fechaDestino: Date;
    }
 
   guardar(iNombreOrganizador:string, iPersonas:number, iDestino:string, fechaSeleccionada:Date, iDescripcion:string, idBase:string):boolean{
-    // let fechaUTC = fechaSeleccionada.toUTCString;
-    // console.log("Fecha ISO: ");
-    // console.log(fechaUTC.toString());
     console.log(fechaSeleccionada.toISOString());
     let destino = new DestinoViaje(iNombreOrganizador,iPersonas,iDestino,fechaSeleccionada.toISOString(),iDescripcion,1,idBase);
     console.log(destino);
@@ -68,13 +65,6 @@ fechaDestino: Date;
     return {nombreInvalido:false}
   }
 
-  // https://www.youtube.com/watch?v=aKTLabJ39Rk
-  // https://desarrolloweb.com/articulos/emision-eventos-output-angular.html
-  // https://academia-binaria.com/servicios-inyectables-en-Angular/
-  // https://www.youtube.com/watch?v=aKTLabJ39Rk
-  // https://stackoverflow.com/questions/53944832/how-to-update-a-value-using-forms-and-services-on-angular
-  // https://jasonwatmore.com/post/2020/09/02/angular-combined-add-edit-create-update-form-example
-
   editarViaje(idestino:DestinoViaje){
     console.log("Entrando a edición de viajes")
     //this.esEdicion = true; // Boleano para verificar si es edición
@@ -91,7 +81,6 @@ fechaDestino: Date;
     });
 
   }
-
 
   ngOnInit(): void {
 

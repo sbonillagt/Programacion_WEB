@@ -31,9 +31,7 @@ export class DestinoViajeComponent implements OnInit {
     this.onItemEditado.emit(idestino);
     return false;
   }
-
- 
-
+  
   borrarDestino(destino:DestinoViaje){
     this.onDelete.emit(destino);
     return false;

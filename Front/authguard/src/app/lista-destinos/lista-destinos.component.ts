@@ -4,7 +4,6 @@ import { MyserviceService } from '../myservice.service';
 import { RespuestaDestinoViajes} from 'src/app/models/respuesta-destino-viajes';
 import { Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-lista-destinos',
   templateUrl: './lista-destinos.component.html',
@@ -31,28 +30,21 @@ export class ListaDestinosComponent implements OnInit {
   }
 
   obtenerTodos(){
-    //this.destinos = this.servicio.getAllDestinos();
-
-    this.servicio.getAllDestinos().subscribe((res:any)=>{
+    this.servicio.getAllDestinos().subscribe((res:DestinoViaje[])=>{
       console.log(res);
       this.destinos  = res;
     }, err => console.log(err)
     );
-
-    // let dateT=  new Date(this.destinos[1].fechaInicial);
-    // console.log(dateT.getDate());
-    // console.log(dateT.getFullYear());
-    // console.log(dateT.getMonth().valueOf()+1);
-    
   }
 
   eliminarDestino(onDelete:DestinoViaje){
     this.servicio.deleteItem(onDelete);
-    this.obtenerTodos();
     console.log(onDelete);
+    //this._router.navigate(['/destino']);
+    this.obtenerTodos();
+    //console.log(onDelete);
   }
 
-  idate: string = '';
   agregado(destino: DestinoViaje) { 
     
     this.servicio.addDestino(destino).subscribe(
@@ -69,19 +61,9 @@ export class ListaDestinosComponent implements OnInit {
     this.onItemAdded.emit(destino);
   }
 
-  elegido(destino:DestinoViaje){
-    //this.destinos.forEach(function (x){x.setSelected(false);});
-    //destino.setSelected(true);
-  }
-
   editarViaje(destino: DestinoViaje){
     console.log("Esto vamos a edaitar");
     console.log(destino);
     this._router.navigate(['/edit',destino.id]);
-  }
-
-  borrar(destino:DestinoViaje){
-    console.log(destino);
-
   }
 }

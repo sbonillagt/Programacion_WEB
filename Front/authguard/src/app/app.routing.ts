@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { ListaDestinosComponent } from './lista-destinos/lista-destinos.component';
 
+
 export const AppRoutes: Routes = [
     {
         path: '',

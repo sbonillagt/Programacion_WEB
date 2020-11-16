@@ -12,28 +12,6 @@ export class DestinoViaje {
         public descripcion:string,
         public userID:number,
         public id:string ){
-            //this.servicios = ['Pileta','Desayuno'];
-    }
-    // isSelected():boolean{
-    //     return this.selected;
-    // }
-    // setSelected(val:boolean){
-    //     this.selected = val;
-    // }
-
-    public obtenerFecha(){
-        // console.log("Desde el metodo ObtenerFecha()")
-        // this.dateFormat = new Date (this.fechaInicial.toString());
-        // console.log(this.fechaInicial);
-        // console.log(this.dateFormat);
-        // console.log('Fecha: '+ this.dateFormat.getFullYear)
-        // return this.dateFormat;
-
-        //return this.fechaInicial;
-
-
-        var date = new Date (this.fechaInicial.toString());
-        return date;
     }
 }
 
