@@ -7,7 +7,6 @@ import { RespuestaDestinoViajes} from './models/respuesta-destino-viajes';
 import { data } from 'jquery';
 
 const API: string = "https://yoqiypo3o5.execute-api.us-east-1.amazonaws.com/dev"
-//const KEY: string = '123456$#@$^@1ERF';
 
 @Injectable()
 export class MyserviceService {

@@ -7,6 +7,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
+//Amplify
+//import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
@@ -58,10 +63,19 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SharedModule,
         RouterModule.forRoot(AppRoutes),
         //COURSERA
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        //Amplify
+        //AmplifyUIAngularModule,
+        AmplifyAngularModule
+        
     ],
     providers: [
         MyserviceService,
+        AmplifyService,
+        {
+          provide: PERFECT_SCROLLBAR_CONFIG,
+          useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+        },
         AuthGuard,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,

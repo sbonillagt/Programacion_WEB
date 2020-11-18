@@ -1,20 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-authguard-dev-213657-authRole",
-      "UnauthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-213657-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-213657-authRole",
+      "AuthRoleName": "amplify-authguard-dev-192602-authRole",
+      "UnauthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-192602-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-192602-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-authguard-dev-213657-deployment",
-      "UnauthRoleName": "amplify-authguard-dev-213657-unauthRole",
-      "StackName": "amplify-authguard-dev-213657",
-      "StackId": "arn:aws:cloudformation:us-east-1:786736373098:stack/amplify-authguard-dev-213657/ff95ad20-2305-11eb-bffb-0ac97ebd7097",
-      "AmplifyAppId": "ddtlt9kw2mux"
-    },
-    "categories": {
-      "auth": {
-        "authguardec6af744": {}
-      }
+      "DeploymentBucketName": "amplify-authguard-dev-192602-deployment",
+      "UnauthRoleName": "amplify-authguard-dev-192602-unauthRole",
+      "StackName": "amplify-authguard-dev-192602",
+      "StackId": "arn:aws:cloudformation:us-east-1:786736373098:stack/amplify-authguard-dev-192602/081d3d90-293d-11eb-93b9-0e35b405c3d1",
+      "AmplifyAppId": "d36mlhlxsd0yt3"
     }
   }
 }

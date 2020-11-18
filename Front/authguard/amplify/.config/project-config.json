@@ -6,8 +6,8 @@
     "framework": "angular",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist",
-      "BuildCommand": "npm run build",
+      "DistributionDir": "dist/project",
+      "BuildCommand": "npm run-script build",
       "StartCommand": "ng serve"
     }
   },
