@@ -13,35 +13,44 @@ export class MyserviceService {
   destinos:DestinoViaje[];
   unDestino:DestinoViaje;
 
+ 
+
   constructor(private http: HttpClient) { 
     this.destinos = [];
   }
 
   addDestino(iDestino:DestinoViaje): Observable<DestinoViaje>{
     this.destinos.push(iDestino);
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
     return this.http.post<DestinoViaje>(`${API}/post`, iDestino);
 
   }
 
-  deleteItem(iDestino:DestinoViaje){
-    this.http.delete(`${API}/post/${iDestino.id}`,).subscribe(
-      (response)=> console.log(response),
-      (error)=> console.log(error)
-    );
+  deleteItem(iDestino:DestinoViaje): Observable<DestinoViaje>{
+    const headersC = new HttpHeaders({  'Access-Control-Allow-Origin': '*'});
+    // this.http.delete(`${API}/post/${iDestino.id}`).subscribe(
+    //   (response)=> console.log(response),
+    //   (error)=> console.log(error)
+    // );
+    return this.http.delete<DestinoViaje>(`${API}/post/${iDestino.id}`)
   }
 
   getAllDestinos(): Observable<DestinoViaje[]>{
     //Agarra toda la información del los post
+    // const headersC = new HttpHeaders({  'Access-Control-Allow-Origin': '*'});
+    // {headers:headersC}
     return this.http.get<DestinoViaje[]>(`${API}/posts`);
   }
 
   getByIdDestinos(id:string):Observable<DestinoViaje>{
+    const headersC = new HttpHeaders({  'Access-Control-Allow-Origin': '*'});
     return this.http.get<DestinoViaje>(`${API}/post/${id}`);
     //return this.destinos[0];
     // return this.destinos.filter(function(destinos){return destinos.id.toString() === id;})[0];
   }
 
   editByID(idestino:DestinoViaje){
+    const headersC = new HttpHeaders({  'Access-Control-Allow-Origin': '*'});
     let idBase = idestino.id;
     this.http.put(`${API}/post/${idBase}`,idestino).subscribe(
       (response)=>{

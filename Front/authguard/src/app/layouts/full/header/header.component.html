@@ -1,6 +1,7 @@
 <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
-    {{userName}}</button>
+    Opciones </button>
 <mat-menu #profile="matMenu" class="mymegamenu">
-    <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon> Sign Out </button>
+    <button mat-menu-item (click)="exitTheApp()">
+        <mat-icon >exit_to_app </mat-icon> Cerrar Sesión </button>
+        <!-- <amplify-sign-out></amplify-sign-out> -->
 </mat-menu>

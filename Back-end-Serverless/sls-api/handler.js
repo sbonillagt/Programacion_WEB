@@ -12,6 +12,9 @@ const postsTable = process.env.POSTS_TABLE;
 //Create response
 function response(statusCode, message) {
   return {
+    headers: {'Access-Control-Allow-Methods':'*',
+   'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Origin': '*'},
     statusCode: statusCode,
     body: JSON.stringify(message)
   };

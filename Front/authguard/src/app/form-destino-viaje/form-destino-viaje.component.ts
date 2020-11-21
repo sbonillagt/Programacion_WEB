@@ -13,7 +13,7 @@ import { MyserviceService } from '../myservice.service';
 })
 export class FormDestinoViajeComponent implements OnInit {
 @Output() onItemAdded: EventEmitter<DestinoViaje>;
-
+@Output() onItemEditToSave: EventEmitter<DestinoViaje>;
 
 esEdicion: boolean;
 formGroupFormulario: FormGroup;
@@ -23,6 +23,7 @@ fechaDestino: Date;
               formBuilderFormulario: FormBuilder,
               private route:ActivatedRoute) {
     this.onItemAdded = new EventEmitter();
+    this.onItemEditToSave = new EventEmitter();
     this.formGroupFormulario = formBuilderFormulario.group({
       iNombreOrganizador: ['', Validators.required],
       iPersonas: ['',Validators.required],
@@ -41,7 +42,8 @@ fechaDestino: Date;
     this.onItemAdded.emit(destino)
     }else{
       console.log("Vamonos a editar este tema ")
-      this.servicio.editByID(destino);
+      this.onItemEditToSave.emit(destino)
+      //this.servicio.editByID(destino);
     }
 
     this.formGroupFormulario.reset();

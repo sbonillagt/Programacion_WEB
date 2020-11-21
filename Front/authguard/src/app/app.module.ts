@@ -8,9 +8,7 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
 //Amplify
-//import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
-
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular'
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FullComponent } from './layouts/full/full.component';
@@ -65,17 +63,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         //COURSERA
         ReactiveFormsModule,
         //Amplify
-        //AmplifyUIAngularModule,
-        AmplifyAngularModule
+        AmplifyUIAngularModule
+
         
     ],
     providers: [
         MyserviceService,
-        AmplifyService,
-        {
-          provide: PERFECT_SCROLLBAR_CONFIG,
-          useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-        },
+        
         AuthGuard,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,

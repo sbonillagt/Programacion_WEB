@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    if (localStorage.getItem('username') != null) {
+    if (localStorage.getItem('CognitoIdentityServiceProvider.13lduc85ed8uioc787lfghki6c.LastAuthUser') != null) {
       return true;
     } else {
       this.routes.navigate(['/login']);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,9 +10,17 @@ export class AppHeaderComponent {
   public config: PerfectScrollbarConfigInterface = {};
 
   userName: any;
-  constructor() {
+  constructor( private routes: Router) {
     this.userName = localStorage.getItem('username');
   }
+
+  exitTheApp(){
+    localStorage.removeItem('JWT');
+    localStorage.removeItem('CognitoIdentityServiceProvider.13lduc85ed8uioc787lfghki6c.5af69cce-b5de-40f2-9229-2e2916e8478d.idToken');
+    localStorage.removeItem('CognitoIdentityServiceProvider.13lduc85ed8uioc787lfghki6c.LastAuthUser');
+    this.routes.navigate(['/login']);
+  }
+
   // This is for Notifications
   notifications: Object[] = [
     {

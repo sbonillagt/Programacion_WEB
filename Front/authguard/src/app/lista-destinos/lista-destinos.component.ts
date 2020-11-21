@@ -14,15 +14,16 @@ export class ListaDestinosComponent implements OnInit {
   @Output() onItemEditado: EventEmitter<DestinoViaje>;
   @Output() onDelete: EventEmitter<DestinoViaje>;
   @Output() onEditForm: EventEmitter<DestinoViaje>;
-  
+  @Output() onItemEditToSave: EventEmitter<DestinoViaje>;
   destinos: DestinoViaje[];
 
   constructor(private servicio:MyserviceService,
-              private _router:Router) { 
+      private routes: Router) { 
     this.onItemAdded = new EventEmitter();
     this.onItemEditado = new EventEmitter();
     this.onDelete =  new EventEmitter();
     this.onEditForm = new EventEmitter();
+    this.onItemEditToSave = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -38,11 +39,19 @@ export class ListaDestinosComponent implements OnInit {
   }
 
   eliminarDestino(onDelete:DestinoViaje){
-    this.servicio.deleteItem(onDelete);
+    this.servicio.deleteItem(onDelete).subscribe((res:any)=>{
+      console.log(res);
+      this.obtenerTodos()
+    }, err => console.log(err)
+    );;
+
     console.log(onDelete);
     //this._router.navigate(['/destino']);
-    this.obtenerTodos();
+    //this.obtenerTodos();
     //console.log(onDelete);
+    //this.destinos[this.destinos.findIndex(x => x.id == onDelete.id)];
+    //this.routes.navigate(['/destino']);
+    
   }
 
   agregado(destino: DestinoViaje) { 
@@ -61,9 +70,16 @@ export class ListaDestinosComponent implements OnInit {
     this.onItemAdded.emit(destino);
   }
 
+  itemAEditar(destino: DestinoViaje){
+  this.destinos[this.destinos.findIndex(x => x.id == destino.id)] = destino;
+  this.servicio.editByID(destino);
+  //this.routes.navigate(['/destino']);
+  }
+
   editarViaje(destino: DestinoViaje){
     console.log("Esto vamos a edaitar");
     console.log(destino);
-    this._router.navigate(['/edit',destino.id]);
+    this.routes.navigate(['/edit',destino.id]);
+    
   }
 }

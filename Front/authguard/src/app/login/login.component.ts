@@ -28,5 +28,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  goStarter(){
+    this.routes.navigate(['/starter']);
+  }
+
   ngOnInit() {}
 }

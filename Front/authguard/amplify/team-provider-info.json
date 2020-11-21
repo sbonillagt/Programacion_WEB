@@ -1,15 +1,20 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-authguard-dev-192602-authRole",
-      "UnauthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-192602-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-192602-authRole",
+      "AuthRoleName": "amplify-authguard-dev-00422-authRole",
+      "UnauthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-00422-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::786736373098:role/amplify-authguard-dev-00422-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-authguard-dev-192602-deployment",
-      "UnauthRoleName": "amplify-authguard-dev-192602-unauthRole",
-      "StackName": "amplify-authguard-dev-192602",
-      "StackId": "arn:aws:cloudformation:us-east-1:786736373098:stack/amplify-authguard-dev-192602/081d3d90-293d-11eb-93b9-0e35b405c3d1",
-      "AmplifyAppId": "d36mlhlxsd0yt3"
+      "DeploymentBucketName": "amplify-authguard-dev-00422-deployment",
+      "UnauthRoleName": "amplify-authguard-dev-00422-unauthRole",
+      "StackName": "amplify-authguard-dev-00422",
+      "StackId": "arn:aws:cloudformation:us-east-1:786736373098:stack/amplify-authguard-dev-00422/14907b00-2a2d-11eb-befe-0e508885cec5",
+      "AmplifyAppId": "d1x8g78yuuuwqu"
+    },
+    "categories": {
+      "auth": {
+        "authguarda0afe36c": {}
+      }
     }
   }
 }

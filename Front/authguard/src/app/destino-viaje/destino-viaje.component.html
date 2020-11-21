@@ -1,4 +1,4 @@
-<div fxFlex.gt-sm="33.33%" fxFlex="100">
+<!-- <div fxFlex.gt-sm="33.33%" fxFlex="100"> -->
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar>
@@ -8,9 +8,8 @@
             </div>
             <mat-card-title>{{destino.nombreDestino}}</mat-card-title>
             
-            <!-- <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar {{destino.obtenerFecha().getDay()}}/{{destino.obtenerFecha().getMonth()}}/{{destino.obtenerFecha().getFullYear()}}</mat-card-subtitle> -->
-            <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar {{fechaComponente.getDate()}}/{{fechaComponente.getMonth()}}/{{fechaComponente.getFullYear()}}</mat-card-subtitle>
-            <!-- <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar </mat-card-subtitle> -->
+            <mat-card-subtitle>Por: {{destino.nombreOrganizador}} para inciar {{fechaComponente.getDate()}}/{{fechaComponente.getMonth()+1}}/{{fechaComponente.getFullYear()}}</mat-card-subtitle>
+
         </mat-card-header>
         <img mat-card-image src="assets/images/big/img7.png" alt="Photo of trip">
         <mat-card-content>
@@ -18,20 +17,11 @@
             <p>
                {{destino.descripcion}}
             </p>
-            <!-- <p>Servicios</p>
-            <ul>
-                <li *ngFor = "let s of destino.servicios"> 
-                    <span [ngSwitch]="s">
-                        <i *ngSwitchCase= "'Desayuno'">{{s}}</i>
-                        <i *ngSwitchDefault>{{s}}</i>
-                        
-                    </span>
-                </li>
-            </ul> -->
+
             <mat-card-actions>
                 <button mat-raised-button color="accent" (click)="editarViaje(destino)">Editar</button>
                 <button mat-button (click)="borrarDestino(destino)">Eliminar</button>
             </mat-card-actions>
         </mat-card-content>
     </mat-card>
-</div>
+<!-- </div> -->

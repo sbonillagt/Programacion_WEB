@@ -10,7 +10,7 @@ export const StarterRoutes: Routes = [
       title: 'Starter Page',
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
-        { title: 'Starter Page' }
+        { title: 'Los Viajes' }
       ]
     }
   }
